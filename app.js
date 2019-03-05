@@ -47,22 +47,15 @@ app.locals.tagjs = tagLibrary.tagJs;
 app.locals.tagcss = tagLibrary.tagCss;
 
 app.use(session({
-    secret: 'secret',
-    cookie:{
-        maxAge: 1000*60*30
-    }
+    name: 'nodesess',
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: false
+    },
+    store: new RedisStore(config.get('sessionConfig.redis'))
 }));
-
-// app.use(session({
-//     name: 'nodesess',
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         httpOnly: false
-//     },
-//     store: new RedisStore(config.get('sessionConfig.redis'))
-// }));
 
 var viewCache = process.env.NODE_ENV == 'production' ? true : config.get('cacheConfig.viewCache');
 var adaro = require('adaro');
