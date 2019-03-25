@@ -276,8 +276,16 @@ module.exports = function(router) {
                                 date_end: r.get('date_end'),
                                 mtime: r.get('mtime'),
                                 ctime: r.get('ctime'),
-                                subscribe_count: getCountBySceneId(rsd, r.get('scene_id'), 1),
-                                unsubscribe_count: getCountBySceneId(rsd, r.get('scene_id'), 0)
+                                subscribe_count: getCountBySceneId(
+                                    rsd,
+                                    r.get('scene_id'),
+                                    1
+                                ),
+                                unsubscribe_count: getCountBySceneId(
+                                    rsd,
+                                    r.get('scene_id'),
+                                    0
+                                )
                             };
 
                             if (ro.mtime) {
@@ -293,6 +301,31 @@ module.exports = function(router) {
                             rs.push(ro);
                         });
                     }
+                    // hardcode 了了管家 微信公众号
+                    rs.push({
+                        name: '了了管家',
+                        action_name: '',
+                        expire_seconds: '',
+                        scene_id: 9999,
+                        scene_str: '',
+                        ticket: '',
+                        img_url: 'http://weixin.qq.com/r/wCjg_CDEUX0urWSb933S',
+                        url: 'http://weixin.qq.com/r/wCjg_CDEUX0urWSb933S',
+                        date_start: '',
+                        date_end: '',
+                        mtime: '',
+                        ctime: '',
+                        subscribe_count: getCountBySceneId(
+                            rsd,
+                            9999,
+                            1
+                        ),
+                        unsubscribe_count: getCountBySceneId(
+                            rsd,
+                            9999,
+                            0
+                        )
+                    });
                     callback(null, {
                         total_count: count,
                         list: rs
@@ -319,7 +352,7 @@ module.exports = function(router) {
                 rs.forEach(function(r) {
                     if (r['subscribe_scene_id'] === null) {
                         rsd.push({
-                            subscribe_scene_id: -1,
+                            subscribe_scene_id: 9999,
                             subscribe: r['subscribe'],
                             count: r['count']
                         });
@@ -330,7 +363,6 @@ module.exports = function(router) {
                             count: r['count']
                         });
                     }
-
                 });
                 callback(null, rsd, rows);
             })
@@ -340,19 +372,22 @@ module.exports = function(router) {
     }
 
     function getCountBySceneId(data, scene_id, subscribe) {
-        var count = 0
+        var count = 0;
         if (data) {
-            data.forEach(function (r){
-                if (r['subscribe_scene_id'] == scene_id && r['subscribe'] == subscribe) {
+            data.forEach(function(r) {
+                if (
+                    r['subscribe_scene_id'] == scene_id &&
+                    r['subscribe'] == subscribe
+                ) {
                     count = r['count'];
                 }
             });
         }
-        return count
+        return count;
     }
 
     function getdetaildata(sceneid, offset, limit, callback) {
-        console.log('ddddd=============')
+        console.log('ddddd=============');
         t_subscribe_user
             .findAndCountAll({
                 where: {
@@ -391,8 +426,16 @@ module.exports = function(router) {
                                 // date_end: r.get('date_end'),
                                 // mtime: r.get('mtime'),
                                 // ctime: r.get('ctime'),
-                                subscribe_count: getCountBySceneId(rsd, r.get('scene_id'), 1),
-                                unsubscribe_count: getCountBySceneId(rsd, r.get('scene_id'), 0)
+                                subscribe_count: getCountBySceneId(
+                                    rsd,
+                                    r.get('scene_id'),
+                                    1
+                                ),
+                                unsubscribe_count: getCountBySceneId(
+                                    rsd,
+                                    r.get('scene_id'),
+                                    0
+                                )
                             };
 
                             if (ro.mtime) {
