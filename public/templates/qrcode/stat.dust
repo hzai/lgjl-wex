@@ -108,7 +108,7 @@
                                 <span>{{ item.subscribe_count }} / {{ item.unsubscribe_count }} </span>
                             </td>
                             <td>
-                                <span><a href='/qrcode/stat/detail?sceneid={{ item.scene_id }}'>查看</a> </span>
+                                <span></span>
                             </td>
                         </tr>
                     </tbody>
