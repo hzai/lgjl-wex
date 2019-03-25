@@ -306,7 +306,7 @@ module.exports = function(router) {
                         name: '了了管家',
                         action_name: '',
                         expire_seconds: '',
-                        scene_id: 9999,
+                        scene_id: 0,
                         scene_str: '',
                         ticket: '',
                         img_url: 'http://images.llguanjia.com/mp.jpg',
@@ -317,12 +317,12 @@ module.exports = function(router) {
                         ctime: '',
                         subscribe_count: getCountBySceneId(
                             rsd,
-                            9999,
+                            0,
                             1
                         ),
                         unsubscribe_count: getCountBySceneId(
                             rsd,
-                            9999,
+                            0,
                             0
                         )
                     });
@@ -352,7 +352,7 @@ module.exports = function(router) {
                 rs.forEach(function(r) {
                     if (r['subscribe_scene_id'] === null) {
                         rsd.push({
-                            subscribe_scene_id: 9999,
+                            subscribe_scene_id: 0,
                             subscribe: r['subscribe'],
                             count: r['count']
                         });
