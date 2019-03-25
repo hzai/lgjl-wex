@@ -141,6 +141,9 @@
                         <ul class="treeview-menu">
                             <li><a href="/qrcode/list"><i class="fa fa-newspaper-o"></i>渠道二维码</a></li>
                         </ul>
+                        <ul class="treeview-menu">
+                            <li><a href="/qrcode/stat"><i class="fa fa-newspaper-o"></i>数据统计</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
